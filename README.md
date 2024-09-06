@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Codeigniter4 Starter
 
 [![Official Website](https://img.shields.io/badge/Official_Website-Visit-yellow)](https://simpletine.com)  
@@ -14,3 +15,6 @@ For the guideline, see the [documentation](/INSTALLING.md)
 ---
 ### Contribute
 To contribute to this repository and extend its architectural capabilities or you find an issue, follow these [steps](/CONTRIBUTE.md)
+=======
+# MoneyMinder
+>>>>>>> 9c7aa0685a3eacb2bf0e6d216544ee5598419f35
