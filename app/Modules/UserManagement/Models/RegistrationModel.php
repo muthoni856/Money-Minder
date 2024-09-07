@@ -16,17 +16,20 @@ protected $validationRules=[
     'username'=>'required|min_length[3]|max_length[20]|is_unique[users.username]',
     'email'=>'required|valid_email',
     'password'=>'required|min_length[6]|max_length[255]',
-    'role'=>'required'
+    
 ];
 protected $validationMessages=[
     'username'=>[
-    'username'=>'Username is required',
-    'is_unique'=>'Username already exists, try again'
+    'required' => 'Username is required.',
+        'min_length' => 'Username must be at least 3 characters long.',
+        'max_length' => 'Username cannot exceed 20 characters.',
+        'is_unique' => 'Username already exists, try again.',
 
 ],
 'email' => [
     'required'=>'Email is required.',
-    'valid_email'=>'Enter a valid email address e.g johndoe@example.com'
+    'valid_email'=>'Enter a valid email address e.g johndoe@example.com',
+    'is_unique' => 'This email is already registered.',
 ],
 'password'=>[
     'required'=>'Password is required',
@@ -35,12 +38,16 @@ protected $validationMessages=[
 ];
 
 //Hashing the password before saving for protection
-protected function beforeInsert(array $data)
-{
-    if (isset($data['data']['password'])){
-        $data['data']['password']=password_hash($data['data']['password'],PASSWORD_DEFAULT);
-    }
-    return $data;
+protected $beforeInsert = ['hashPassword'];
+    protected $beforeUpdate = ['hashPassword'];
+
+    protected function hashPassword(array $data)
+    {
+        if (isset($data['data']['password'])) {
+            $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+            log_message('debug', 'Password hashed for user: ' . ($data['data']['username'] ?? 'unknown'));
+        }
+        return $data;
 }
 
 }

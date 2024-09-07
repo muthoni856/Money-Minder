@@ -47,7 +47,7 @@
                         <h3 class="text-center mb-0">User Registration</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/register" method="post">
+                    <form action="<?= site_url('register') ?>" method="post">
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" required>

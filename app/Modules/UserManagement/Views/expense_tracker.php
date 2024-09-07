@@ -63,7 +63,7 @@
                         <h3 class="text-center mb-0">Hello, <?=session()->get('username')?></h3>
                     </div>
                     <div class="card-body">
-                        <form id="expense-form">
+                        <form id="expense-form" method="post" action="/expense/create">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -89,14 +89,18 @@
                                         </td>
                                         <td><input type="number" class="form-control" name="amount[]" step="0.01"></td>
                                         <td>
-                                            <button type="button" class="btn btn-info btn-sm view-btn">View</button>
-                                            <button type="button" class="btn btn-warning btn-sm edit-btn">Edit</button>
-                                            <button type="button" class="btn btn-danger btn-sm delete-btn">Delete</button>
+                                        <button type="submit" class="btn btn-info btn-sm view-btn">OK</button>
+                                            <button type="submit" class="btn btn-info btn-sm view-btn">View</button>
+                                            <button type="submit" class="btn btn-warning btn-sm edit-btn">Edit</button>
+                                            <button type="submit" class="btn btn-danger btn-sm delete-btn">Delete</button>
+                                            
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <button type="button" id="add-row-btn" class="btn btn-primary">Add New Expenditure</button>
+                            <button type="button" id="add-row-btn" class="btn btn-primary" onclick="window.location.href='/expense/report'">View Report</button>
+
                             <hr>
                             <div>
                                 <h4>Total Amount: $<span id="total-amount">0.00</span></h4>
@@ -137,9 +141,11 @@
                     </td>
                     <td><input type="number" class="form-control" name="amount[]" step="0.01"></td>
                     <td>
-                        <button type="button" class="btn btn-info btn-sm view-btn">View</button>
-                        <button type="button" class="btn btn-warning btn-sm edit-btn">Edit</button>
-                        <button type="button" class="btn btn-danger btn-sm delete-btn">Delete</button>
+                    <button type="submit" class="btn btn-info btn-sm view-btn">OK</button>
+                        <button type="submit" class="btn btn-info btn-sm view-btn">View</button>
+                        <button type="submit" class="btn btn-warning btn-sm edit-btn">Edit</button>
+                        <button type="submit" class="btn btn-danger btn-sm delete-btn">Delete</button>
+                        
                     </td>
                 </tr>`;
                 $('#expense-table-body').append(newRow);

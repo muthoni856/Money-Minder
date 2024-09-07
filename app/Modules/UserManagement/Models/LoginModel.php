@@ -9,7 +9,7 @@ class LoginModel extends Model
     protected $primaryKey='id';
     protected $allowedFields=['username','email','password','role','created_at','updated_at'];
 
-    public function getUsername($username)
+    public function getUserByUsername($username)
     {
         return $this->where('username',$username)->first();
     }

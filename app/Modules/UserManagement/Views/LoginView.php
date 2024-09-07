@@ -44,7 +44,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center mb-0">User Login</h3>
+                        <h3 class="text-center mb-0">Money Minder</h3>
                     </div>
                     <div class="card-body">
                     <div class="container mt-5">
@@ -56,7 +56,8 @@
             </div>
         <?php endif; ?>
 
-        <form action="<?= site_url('login') ?>" method="post">
+        <form action="<?= site_url('login/authenticate') ?>" method="post">
+
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" name="username" class="form-control" id="username" required>
