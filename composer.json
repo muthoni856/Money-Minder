@@ -6,7 +6,8 @@
     "homepage": "https://simpletine.com",
     "require": {
         "php": "^7.4 || ^8.0",
-        "codeigniter4/framework": "^4.4.8"
+        "codeigniter4/framework": "^4.4.8",
+        "simpletine/hmvc-shield": "dev-main"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23.1",
