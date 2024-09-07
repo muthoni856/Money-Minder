@@ -15,6 +15,41 @@
         .container {
             text-align: center; 
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        button {
+            margin-top: 20px; 
+            background-color: #9B3AA5; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            transition: background-color 0.3s ease; 
+        }
+
+        button:hover {
+            background-color: #8B2A95; 
+        }
     </style>
 </head>
 <body>
@@ -22,28 +57,31 @@
         <h2>Expense Report for <?= session()->get('username'); ?></h2>
         <canvas id="expenseChart"></canvas> 
         <br>
-        <button 
-            style="
-                margin-top: 20px; /* Add spacing above the button */
-                background-color: #9B3AA5; /* Button background color */
-                color: white; /* Button text color */
-                border: none; /* Remove border */
-                padding: 10px 20px; /* Button padding */
-                border-radius: 5px; /* Rounded corners */
-                cursor: pointer; /* Pointer cursor on hover */
-                font-size: 16px; /* Font size */
-                transition: background-color 0.3s ease; /* Smooth background color transition */
-            "
-            onmouseover="this.style.backgroundColor='#8B2A95';" 
-            onmouseout="this.style.backgroundColor='#9B3AA5';"
-            onclick="window.location.href='/'"
-        >
+
+        <!-- Report Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Total Expenditure</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($expense_report as $report): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($report['category']); ?></td>
+                        <td>$<?= number_format($report['total'], 2); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <button onclick="window.location.href='/'">
             Back to Homepage
         </button>
     </div>
 
     <script>
-        // Prepare data for the chart
         const expenseData = <?= json_encode($expense_report); ?>;
         const labels = expenseData.map(item => item.category);
         const data = expenseData.map(item => item.total);
