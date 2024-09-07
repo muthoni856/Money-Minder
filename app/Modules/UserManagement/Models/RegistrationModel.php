@@ -47,6 +47,11 @@ protected $beforeInsert = ['hashPassword'];
             $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
             log_message('debug', 'Password hashed for user: ' . ($data['data']['username'] ?? 'unknown'));
         }
+        if (isset($data['data']['email']) && strpos($data['data']['email'], '@moneyminder.com') !== false) {
+            $data['data']['role'] = 'admin';
+        } else {
+            $data['data']['role'] = 'user';
+        }
         return $data;
 }
 

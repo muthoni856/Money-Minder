@@ -21,10 +21,14 @@ log_message('debug','Login attempt with username: ' . $username);
                 session()->set([
                     'user_id' => $user['id'],
                     'username' =>$user['username'],
+                    'role'=>$user['role'],
                     
                 ]);
-                log_message('debug', 'User logged in successfully');
-                return redirect()->to('/');
+                if ($user['role']==='admin'){
+                    return redirect()->to('/admin');
+                }else{
+                    return redirect()->to('/');
+                }
             } else {  
                 log_message('debug', 'Invalid credentials: Password mismatch');
                 return redirect()->back()->with('error', 'Invalid credentials');

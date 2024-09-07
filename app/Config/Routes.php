@@ -15,7 +15,11 @@ $routes->post('login/authenticate','LoginController::authenticate');
 
 //Route for Logout
 $routes->get('logout','LoginController::logout');
-$routes->match(['get', 'post'], 'login', 'LoginController::login');
+
 //Route for Expense Tracker
 $routes->post('expense/create', 'ExpenseTrackerController::create');
 $routes->get('expense/report', 'ExpenseTrackerController::report');
+
+//Route for the Admins
+$routes->get('admin', 'AdminController::admin');
+$routes->post('admin/delete/(:num)', 'AdminController::delete/$1');
