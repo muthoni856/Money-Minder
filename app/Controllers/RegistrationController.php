@@ -3,36 +3,32 @@ namespace app\Controllers;
 
 
 use CodeIgniter\Controller;
-use App\Models\UserModel;
+use Modules\UserManagement\Models\RegistrationModel;
 
 class RegistrationController extends Controller
 {
     public function register()
     {
-        return view('user/register');
+        echo view('Modules\UserManagement\Views\registrationView');
     }
 
     public function create()
     {
-        $model = new UserModel();
-        $rules = [
-            'email' => 'required|valid_email|is_unique[users.email]',
-            'username' => 'required|alpha_numeric_space|min_length[3]|is_unique[users.username]',
-            'password' => 'required|min_length[8]'
-        ];
-
-        if ($this->validate($rules)) {
+        $model = new RegistrationModel();
             $data = [
                 'email' => $this->request->getPost('email'),
                 'username' => $this->request->getPost('username'),
-                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-                'role' => 'user',
-            ];
-            
-            $model->insert($data);
-            return redirect()->to('/login')->with('success', 'Registration successful. Please login.');
-        } else {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+                'password' => $this->request->getPost('password'),
+                'role' => $this->request->getPost('user'),
+        ];
+
+        if ($model->save($data)){
+            return redirect()->to('/login');
+        }else{
+            return view('Modules/UserManagement/Views/registrationView',[
+                'validation'=>$model->errors()
+            ]);
+
         }
     }
 }

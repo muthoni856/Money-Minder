@@ -7,5 +7,11 @@ use CodeIgniter\Router\RouteCollection;
  */
 
  $routes->get('/', 'ExpenseTrackerController::index');
- $routes->get('register', 'UserController::register');
-$routes->post('register', 'UserController::create');
+ $routes->get('register', 'RegistrationController::register');
+$routes->post('register', 'RegistrationController::create');
+//Routes for Login
+$routes->get('login','LoginController::login');
+$routes->post('login','LoginController::login');
+
+//Route for Logout
+$routes->get('logout','LoginController::logout');
