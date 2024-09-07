@@ -1,4 +1,4 @@
-# Expense Tracker System
+# Money Minder
 Overview
 This project is an Expense Tracker application built using CodeIgniter 4 with an HMVC (Hierarchical Model View Controller) structure. The system allows users to manage their expenses, generate reports, and provides an admin interface for user management.
 
